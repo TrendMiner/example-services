@@ -26,6 +26,12 @@ jobs:
         - 2375:2375
 
     steps:
+    - uses: actions/checkout@v2
+    - name: Setup tmate session
+      uses: mxschmitt/action-tmate@v3
+      timeout-minutes: 15
+      env:
+        DOCKER_HOST: "tcp://docker:2375"
     - run: docker info
       env:
         DOCKER_HOST: "tcp://docker:2375"
