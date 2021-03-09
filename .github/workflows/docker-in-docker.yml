@@ -27,6 +27,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
+    - run: hostname
     - run: docker info
       env:
           DOCKER_HOST: "tcp://docker:2376"
