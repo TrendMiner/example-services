@@ -17,7 +17,10 @@ jobs:
     # runs all of the steps inside the specified container rather than on the VM host.
     # Because of this the network configuration changes from host based network to a container network.
     container:
-      image:  docker:18.09
+      image:  registry.gitlab.com/sag-trendminer/containers/container-images/docker-maven:latest
+      credentials:
+           username: ${{ secrets.GITLAB_REGISTRY_USERNAME }}
+           password: ${{ secrets.GITLAB_REGISTRY_TOKEN }}
 
     services:
       docker:
@@ -27,11 +30,4 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Setup tmate session
-      uses: mxschmitt/action-tmate@v3
-      timeout-minutes: 15
-      with:
-        sudo: false
     - run: docker info
-      env:
-        DOCKER_HOST: "tcp://docker:2375"
