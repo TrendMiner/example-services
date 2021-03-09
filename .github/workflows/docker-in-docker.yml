@@ -18,19 +18,14 @@ jobs:
     # Because of this the network configuration changes from host based network to a container network.
     container:
       image:  docker:18.09
-      env:
-        DOCKER_HOST: "tcp://docker:2375"
-        DOCKER_TLS_VERIFY: 0
-        DOCKER_TLS_CERTDIR: ""
 
     services:
       docker:
         image: docker:18.09-dind
         ports:
         - 2375:2375
-        env:
-            DOCKER_TLS_VERIFY: 0
-            DOCKER_TLS_CERTDIR: ""
 
     steps:
     - run: docker info
+      env:
+        DOCKER_HOST: "tcp://docker:2375"
