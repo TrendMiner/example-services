@@ -21,7 +21,7 @@ jobs:
 
     services:
       docker:
-        image: docker:19.03.12-dind
+        image: docker:18.09-dind
         ports:
         - 2376:2376
 
@@ -32,4 +32,4 @@ jobs:
       env:
           DOCKER_HOST: "tcp://docker:2376"
           DOCKER_TLS_VERIFY: 0
-          DOCKER_TLS_CERTDIR: ""
+          DOCKER_TLS_CERTDIR: 
