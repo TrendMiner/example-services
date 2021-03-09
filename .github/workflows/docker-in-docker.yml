@@ -17,19 +17,23 @@ jobs:
     # runs all of the steps inside the specified container rather than on the VM host.
     # Because of this the network configuration changes from host based network to a container network.
     container:
-      image:  docker:18.09
+      image:  docker:stable
+      env:
+        DOCKER_HOST: "tcp://docker:2375"
+        DOCKER_TLS_VERIFY: 0
+        DOCKER_TLS_CERTDIR: ""
 
     services:
       docker:
-        image: docker:18.09-dind
+        image: docker:19.03.13-dind
         ports:
         - 2375:2375
+        env:
+            DOCKER_TLS_VERIFY: 0
+            DOCKER_TLS_CERTDIR: ""
 
     steps:
     - uses: actions/checkout@v2
+    - run: echo $DOCKER_HOST
     - run: docker --version
     - run: docker info
-      env:
-          DOCKER_HOST: "tcp://docker:2375"
-          DOCKER_TLS_VERIFY: 0
-          DOCKER_TLS_CERTDIR: 
