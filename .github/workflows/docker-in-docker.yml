@@ -1,0 +1,34 @@
+name: Docker in docker Service Example
+
+on:
+  push:
+    branches:
+    - main
+  pull_request:
+    branches:
+    - main
+  workflow_dispatch:
+
+
+jobs:
+  container-job:
+    runs-on: ubuntu-latest
+
+    # runs all of the steps inside the specified container rather than on the VM host.
+    # Because of this the network configuration changes from host based network to a container network.
+    container:
+      image:  docker:stable
+
+    services:
+      docker:
+        image: docker:19.03.13-dind
+        ports:
+        - 2376:2376
+
+    steps:
+    - uses: actions/checkout@v1
+    - run: docker info
+      env:
+          DOCKER_HOST: "tcp://docker:2376"
+          DOCKER_TLS_VERIFY: 0
+          DOCKER_TLS_CERTDIR: ""
