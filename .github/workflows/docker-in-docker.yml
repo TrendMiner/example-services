@@ -33,5 +33,4 @@ jobs:
             DOCKER_TLS_CERTDIR: ""
 
     steps:
-    - uses: actions/checkout@v2
     - run: docker info
