@@ -34,6 +34,4 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - run: echo $DOCKER_HOST
-    - run: docker --version
     - run: docker info
