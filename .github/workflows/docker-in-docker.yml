@@ -26,8 +26,8 @@ jobs:
         - 2376:2376
 
     steps:
-    - uses: actions/checkout@v1
-    - run: lsb_release -a
+    - uses: actions/checkout@v2
+    - run: echo $DOCKER_HOST && echo $DOCKER_TLS_VERIFY
     - run: docker info
       env:
           DOCKER_HOST: "tcp://docker:2376"
