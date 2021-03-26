@@ -19,12 +19,6 @@ jobs:
            username: ${{ secrets.GITLAB_REGISTRY_USERNAME }}
            password: ${{ secrets.GITLAB_REGISTRY_TOKEN }}
 
-    services:
-      docker:
-        image: docker:18.09-dind
-        ports:
-        - 2375:2375
-
     steps:
     - uses: actions/checkout@v2
     - run: docker info
